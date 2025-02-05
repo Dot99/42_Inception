@@ -1,6 +1,7 @@
-FROM debian:latest
+FROM debian:buster
 
-RUN apt update && apt upgrade && apt install -y \
-	nginx
+RUN apt -y update && apt install -y nginx && apt install openssl -y
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY ./tools/script.sh /
+
+CMD [ "/script.sh" ]

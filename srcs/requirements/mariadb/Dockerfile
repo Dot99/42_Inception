@@ -2,14 +2,13 @@ FROM debian:bullseye
 
 EXPOSE 3306
 
-RUN apt-get update -y  && apt-get install mariadb-server -y
+RUN apt update -y  && apt --no-install-recommends --no-install-suggests install mariadb-server -y &&\
+	rm -rf /var/lib/apt/lists/*
 
-COPY ./tools/script.sh /tmp/script.sh
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d
 
-RUN chmod +x /tmp/script.sh
+COPY tools/script.sh /bin
 
-RUN sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN chmod +x /bin/script.sh
 
-ENTRYPOINT [ "bash", "/tmp/script.sh"]
-
-CMD ["mysqld_safe"]
+CMD ["script.sh", "mysqld_safe"]

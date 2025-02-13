@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt-update -y && apt install redis-server
+RUN apt update -y && apt install redis-server -y
 
 #Max of 256MB of memory
 RUN echo "maxmemory 256mb" >> /etc/redis/redis.conf

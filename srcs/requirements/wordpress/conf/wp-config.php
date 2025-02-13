@@ -21,13 +21,6 @@
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 
-// define( 'DB_NAME', getenv('thedatabase') );
-// define( 'DB_USER', getenv('theuser') );
-// define( 'DB_PASSWORD', getenv('abc') );
-// define( 'DB_HOST', getenv('mariadb') );
-// define( 'WP_HOME', getenv('https://login.42.fr') );
-// define( 'WP_SITEURL', getenv('https://login.42.fr') );
-
 define( 'DB_NAME', getenv('DB_NAME') );
 define( 'DB_USER', getenv('DB_USER') );
 define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
@@ -83,7 +76,10 @@ define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-
+define('WP_REDIS_HOST', 'redis');
+#Default port of redis
+define('WP_REDIS_PORT', 6379);
+define('WP_CACHE', true);
 
 /* That's all, stop editing! Happy publishing. */
 

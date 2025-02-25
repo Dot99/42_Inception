@@ -1,10 +1,12 @@
+#!/bin/sh
+
 service vsftpd start
 
 # Add the USER
-adduser $ftp_user --disabled-password
+adduser --disabled-password --gecos "" $ftp_user
 
 #Change his password
-echo "$ftp_user:$ftp_pwd" | /usr/sbin/chpasswd
+echo "$ftp_user:$ftp_pwd" | chpasswd
 
 #Add user to vsftpd allowed users(Able to log in)
 echo "$ftp_user" | tee -a /etc/vsftpd.userlist 
@@ -29,7 +31,7 @@ echo "
 local_enable=YES
 allow_writeable_chroot=YES
 pasv_enable=YES
-local_root=/home/sami/ftp
+local_root=/var/www/html
 pasv_min_port=40000
 pasv_max_port=40005
 userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
@@ -39,3 +41,6 @@ service vsftpd stop
 
 #starts it once again
 /usr/sbin/vsftpd
+
+chown -R $ftp_user:$ftp_user /var/www/html
+chmod -R 775 /var/www/html

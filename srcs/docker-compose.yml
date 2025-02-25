@@ -22,7 +22,7 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress/
     volumes:
-      - wordpress_files:/var/www/inception/
+      - wordpress_files:/var/www/html/
     networks:
       - all
     init: true
@@ -54,7 +54,7 @@ services:
     ports:
       - '443:443'
     volumes:
-      - wordpress_files:/var/www/inception/
+      - wordpress_files:/var/www/html/
     networks:
       - all
     init: true
@@ -66,68 +66,68 @@ services:
   
 #--------BONUS---------
 
-  # ftp:
-  #   container_name: ftp
-  #   build: ./requirements/bonus/ftp/.
-  #   image: ftp:42
-  #   depends_on:
-  #     - wordpress
-  #   volumes:
-  #     - wordpress:/home/gude-jes/ftp/files
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "21:21"
-  #     - "20:20"
-  #     - "40000-40005:40000-40005"
-  #   networks:
-  #     - all
-  #   restart: always
-  # adminer:
-  #   container_name: adminer
-  #   build: ./requirements/bonus/adminer/.
-  #   image: adminer:42
-  #   depends_on:
-  #     - mariadb
-  #   ports:
-  #     - "600:80"
-  #   networks:
-  #     - all
-  #   restart: always
-  # redis:
-  #   container_name: redis
-  #   build: ./requirements/bonus/redis/.
-  #   image: redis:42
-  #   volumes:
-  #   - wordpress:/var/www/html
-  #   depends_on:
-  #     - wordpress
-  #   networks:
-  #     - all
-  #   restart: always
-  # website:
-  #   container_name: website
-  #   build: ./requirements/bonus/websites/.
-  #   image: website:42
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - all
-  #   restart: always
-  # cadvisor:
-  #   container_name: cadvisor
-  #   build: ./requirements/bonus/cadvisor/.
-  #   image: cadvisor:42
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - all
-  #   volumes:
-  #     - /:/rootfs:ro
-  #     - /var/run:/var/run:ro 
-  #     - /sys:/sys:ro 
-  #     - /var/lib/docker/:/var/lib/docker:ro
-  #   restart: always
+  ftp:
+    container_name: ftp
+    build: ./requirements/bonus/ftp/.
+    image: ftp:42
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_files:/var/www/html
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+      - "20:20"
+      - "40000-40005:40000-40005"
+    networks:
+      - all
+    restart: always
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer/.
+    image: adminer:42
+    depends_on:
+      - mariadb
+    ports:
+      - "600:80"
+    networks:
+      - all
+    restart: always
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis/.
+    image: redis:42
+    volumes:
+    - wordpress_files:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - all
+    restart: always
+  website:
+    container_name: website
+    build: ./requirements/bonus/websites/.
+    image: website:42
+    ports:
+      - "3000:3000"
+    networks:
+      - all
+    restart: always
+  cadvisor:
+    container_name: cadvisor
+    build: ./requirements/bonus/cadvisor/.
+    image: cadvisor:42
+    ports:
+      - "8080:8080"
+    networks:
+      - all
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro 
+      - /sys:/sys:ro 
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: always
 
 
 # volumes --------------------------------------------------------------------

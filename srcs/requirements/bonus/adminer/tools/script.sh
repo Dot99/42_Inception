@@ -8,4 +8,4 @@ chmod 755 /var/www/html/adminer.php
 cd /var/www/html
 
 rm -rf /var/www/html/index.html
-php -S 0.0.0.0:80 -t /var/www/html
+php -S 0.0.0.0:80 -t /var/www/html &

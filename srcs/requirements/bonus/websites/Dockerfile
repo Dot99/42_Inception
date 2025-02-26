@@ -3,7 +3,7 @@ FROM debian:bullseye
 RUN apt update -y
 RUN apt install nodejs npm -y
 
-COPY ./public /home/app
+COPY ./tools /home/app
 
 WORKDIR /home/app
 

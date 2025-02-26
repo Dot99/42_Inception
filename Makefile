@@ -6,7 +6,7 @@
 #    By: gude-jes <gude-jes@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/05 10:46:37 by gude-jes          #+#    #+#              #
-#    Updated: 2025/02/06 09:16:22 by gude-jes         ###   ########.fr        #
+#    Updated: 2025/02/26 09:12:10 by gude-jes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ build:
 kill:
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) kill
 down:
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -t 2
 clean:
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -v
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -v -t 2
 
 status : 
 	@docker ps
